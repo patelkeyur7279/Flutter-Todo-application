@@ -63,7 +63,7 @@ class _AddTaskState extends State<AddNewToDo> {
               child: TextField(
                 controller: _textEditingController,
                 decoration: InputDecoration(
-                    hintText: "Add New Task Here...", border: InputBorder.none),
+                    hintText: "Type Here...", border: InputBorder.none),
                 keyboardType: TextInputType.multiline,
                 autofocus: true,
                 maxLines: null,

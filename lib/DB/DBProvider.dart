@@ -25,8 +25,8 @@ class DBProvider {
       await db.execute("CREATE TABLE ToDo (" +
           "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
           "task TEXT," +
-          "status Integer," +
-          ");");
+          "status Integer" +
+          ")");
     });
   }
 

@@ -36,29 +36,31 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: FutureBuilder<List<ModelToDo>>(
-        future: DBProvider.db.getAllToDoListData(),
-        builder: (context, AsyncSnapshot<List<ModelToDo>> snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (context, index) {
-                ModelToDo data = snapshot.data[index];
-                return Dismissible(
-                  key: UniqueKey(),
-                  background: Container(color: Colors.red,),
-                  onDismissed: (direction){
-                    DBProvider.db.deleteToDo(data);
-                  },
-                  child: ListTile(data));
-              },
-            );
-          } else {
-            Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+      body: Container(
+        child: FutureBuilder<List<ModelToDo>>(
+          future: DBProvider.db.getAllToDoListData(),
+          builder: (context, AsyncSnapshot<List<ModelToDo>> snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  ModelToDo data = snapshot.data[index];
+                  return Dismissible(
+                      key: UniqueKey(),
+                      background: Container(
+                        color: Colors.red,
+                      ),
+                      onDismissed: (direction) {
+                        DBProvider.db.deleteToDo(data);
+                      },
+                      child: ListTile(data));
+                },
+              );
+            } else {
+              return CircularProgressIndicator();
+            }
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
